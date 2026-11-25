@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Presentasi interaktif, PowerPoint, dan buku ajar Nurul Ilmi ABAB untuk SMP dan SMK.">
+<title>Perpustakaan Materi | Nurul Ilmi ABAB</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper:#f7f5ee; --card:#fffdf7; --ink:#1c312b; --muted:#4c6259;
+  --green:#12564e; --green-dark:#0d423c; --line:#dadfd1; --gold:#eedca4;
+  font: 100%/1.55 system-ui, -apple-system, sans-serif;
+}
+* { box-sizing:border-box }
+[hidden] { display:none !important }
+body { margin:0; background:var(--paper); color:var(--ink) }
+button,input { font:inherit }
+a { color:inherit }
+a:focus-visible,button:focus-visible,input:focus-visible { outline:3px solid #9a550b; outline-offset:3px }
+.wrap { width:min(100% - 2.5rem, 70rem); margin-inline:auto }
+.topbar { border-bottom:1px solid var(--line) }
+.topbar .wrap { min-height:4.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem }
+.brand { font-size:.95rem; font-weight:760; letter-spacing:.012em; text-decoration:none }
+.toplink { font-size:.875rem; min-height:2.75rem; display:flex; align-items:center; text-underline-offset:4px }
+.hero { margin-block:1.75rem 2rem; background:var(--green-dark); color:#fffdf2; border-radius:1.45rem; display:grid; grid-template-columns:minmax(0,1fr) minmax(9rem,14rem); align-items:center; gap:2rem; padding:clamp(1.5rem, 4.7vw, 3.5rem) }
+.hero h1 { font:700 clamp(2.35rem,6vw,4.65rem)/1.04 Georgia, serif; letter-spacing:-.04em; margin:0 0 .8rem }
+.hero p { color:#e2eee6; margin:0; max-width:38rem }
+.hero ul { margin:1.3rem 0 0; padding:0; display:flex; flex-wrap:wrap; gap:.5rem 1.3rem; list-style:none; color:#f8ebc2; font-size:.9rem }
+.hero img { display:block; width:100%; height:auto; max-width:12rem; margin-inline:auto; border:1px solid #d5ddc6; border-radius:.45rem; box-shadow:0 .85rem 2rem #071d1680 }
+.controls { display:flex; flex-wrap:wrap; align-items:end; gap:.75rem 1.25rem; padding-bottom:1rem; border-bottom:1px solid var(--line) }
+.controls label { display:grid; gap:.35rem; font-size:.875rem; font-weight:680; flex:1 1 15rem }
+.controls input { width:100%; min-height:2.75rem; padding:.55rem .8rem; color:var(--ink); background:var(--card); border:1px solid #8b9e90; border-radius:.6rem }
+.segment { display:flex; flex-wrap:wrap; gap:.3rem }
+.segment button { color:var(--green-dark); background:transparent; border:1px solid #8b9e90; min-height:2.75rem; border-radius:2rem; padding:.35rem .95rem; font-size:.875rem; font-weight:680; cursor:pointer }
+.segment button[aria-pressed="true"] { background:var(--green); color:white; border-color:var(--green) }
+#result-count { margin:.7rem 0 1.3rem; font-size:.9rem; color:var(--muted) }
+.collection { margin-bottom:2rem }
+.collection h2 { margin:0 0 .65rem; font:700 clamp(1.34rem,3.3vw,1.77rem)/1.25 Georgia, serif }
+.collection h3 { margin:0; font-size:1.02rem; line-height:1.4 }
+.material-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr)); gap:.75rem }
+.material { display:flex; flex-direction:column; background:var(--card); border:1px solid var(--line); border-radius:.8rem; padding:1rem; min-width:0 }
+.meta { color:var(--muted); margin:0 0 .35rem; font-size:.8125rem; font-weight:680 }
+.detail { color:var(--muted); margin:.35rem 0 0; font-size:.88rem }
+.actions { display:flex; flex-wrap:wrap; align-items:center; gap:.4rem .55rem; padding-top:.7rem; margin-top:auto }
+.action { display:inline-flex; align-items:center; min-height:2.75rem; padding:.35rem .6rem; font-size:.84rem; color:var(--green-dark); text-underline-offset:3px }
+.primary { color:#fff; background:var(--green); border-radius:.5rem; padding-inline:.75rem; text-decoration:none; font-weight:680 }
+.primary:hover { background:var(--green-dark) }
+.variants { border-top:1px solid var(--line); margin-top:.65rem; padding-top:.35rem }
+.variants summary { color:var(--green-dark); font-size:.85rem; cursor:pointer; padding:.35rem 0 }
+.variants .actions { padding-top:0 }
+footer { border-top:1px solid var(--line); color:var(--muted); padding-block:1.2rem 1.75rem; font-size:.875rem }
+@media (max-width:40rem) { .hero { grid-template-columns:minmax(0,1fr); gap:1.1rem } .hero img { display:none } }
+@media (max-width:24rem) { .wrap { width:calc(100% - 1.5rem) } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap"><a class="brand" href="./">Nurul Ilmi ABAB</a><a class="toplink" href="../game-pembelajaran/">Portal game</a></div>
+</header>
+<main class="wrap">
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <h1 id="hero-title">Perpustakaan Materi</h1>
+      <p>Buka presentasi kelas, baca buku ajar, atau unduh materi untuk belajar tanpa internet.</p>
+      <ul><li>25 presentasi</li><li>4 edisi dan bab buku</li></ul>
+    </div>
+    <img src="assets/sampul-pkk-xi.webp" width="458" height="650" alt="Sampul buku PKK kelas XI SMK IT Nurul Ilmi">
+  </section>
+  <div class="controls" id="controls" hidden>
+    <label>Cari materi<input type="search" id="search" placeholder="Contoh: kelas XII, SWOT, Abbasiyah"></label>
+    <div class="segment" role="group" aria-label="Jenis materi">
+      <button type="button" data-filter="semua" aria-pressed="true">Semua</button>
+      <button type="button" data-filter="presentasi" aria-pressed="false">Presentasi</button>
+      <button type="button" data-filter="buku" aria-pressed="false">Buku</button>
+    </div>
+  </div>
+  <p id="result-count" role="status">29 materi tersedia.</p>
+  <p id="empty" hidden>Coba kata kunci lain atau pilih Semua.</p>
+  
+  <section class="collection" data-kind="presentasi" data-keywords="produk kreatif dan kewirausahaan smk 11">
+    <h2>PKK Kelas XI</h2>
+    <div class="material-grid">
+      
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 1 · HTML</p>
+        <h3>Dasar-Dasar Kewirausahaan dan Karakter Wirausaha</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_PKK_Kelas_XI_Bab_1.html">Buka presentasi</a><a class="action" href="presentasi/Presentasi_PKK_Bab_1_Offline.zip" download>Unduh ZIP</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 2 · HTML</p>
+        <h3>Kreativitas dan Pengembangan Ide Usaha</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_PKK_Kelas_XI_Bab_2.html">Buka presentasi</a><a class="action" href="presentasi/Presentasi_PKK_Bab_2_Offline.zip" download>Unduh ZIP</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 3 · HTML</p>
+        <h3>Analisis Peluang Usaha dan SWOT</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_PKK_Kelas_XI_Bab_3.html">Buka presentasi</a><a class="action" href="presentasi/Presentasi_PKK_Bab_3_Offline.zip" download>Unduh ZIP</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 4 · HTML</p>
+        <h3>Riset Pasar dan Perilaku Konsumen</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_PKK_Kelas_XI_Bab_4.html">Buka presentasi</a><a class="action" href="presentasi/Presentasi_PKK_Bab_4_Offline.zip" download>Unduh ZIP</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 5 · HTML</p>
+        <h3>Inovasi Produk dan Design Thinking</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_PKK_Kelas_XI_Bab_5.html">Buka presentasi</a><a class="action" href="presentasi/Presentasi_PKK_Bab_5_Offline.zip" download>Unduh ZIP</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 6 · HTML</p>
+        <h3>Perencanaan dan Pengembangan Produk</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_PKK_Kelas_XI_Bab_6.html">Buka presentasi</a><a class="action" href="presentasi/Presentasi_PKK_Bab_6_Offline.zip" download>Unduh ZIP</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 7 · HTML</p>
+        <h3>Desain Kemasan, Branding, dan Identitas Produk</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_PKK_Kelas_XI_Bab_7.html">Buka presentasi</a><a class="action" href="presentasi/Presentasi_PKK_Bab_7_Offline.zip" download>Unduh ZIP</a></div>
+        
+      </article>
+    </div>
+  </section>
+  <section class="collection" data-kind="presentasi" data-keywords="produk kreatif dan kewirausahaan smk 12">
+    <h2>PKK Kelas XII</h2>
+    <div class="material-grid">
+      
+      <article class="material">
+        <p class="meta">Kelas XII · Bab 1 · HTML</p>
+        <h3>Perencanaan dan Pengembangan Usaha</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/PKK_Kelas_12_Bab_1_Presentasi_Interaktif.html">Buka presentasi</a><a class="action" href="presentasi/PKK_Kelas_12_Bab_1_Presentasi_Interaktif.zip" download>Unduh ZIP</a></div>
+        
+      </article>
+    </div>
+  </section>
+  <section class="collection" data-kind="presentasi" data-keywords="mlb smk 11">
+    <h2>Manajemen Layanan Bisnis Kelas XI</h2>
+    <div class="material-grid">
+      
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 2 · HTML</p>
+        <h3>Administrasi dan Operasional Perkantoran</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_Bab_2_Manajemen_Layanan_Bisnis_XI.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 3 · HTML</p>
+        <h3>Pelayanan Prima</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_Bab_3_Pelayanan_Prima_MLB_Kelas_XI.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 4 · HTML</p>
+        <h3>Komunikasi Bisnis dan Etika Profesi</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_Bab_4_Komunikasi_Bisnis_dan_Etika_Profesi_XI.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 5 · HTML</p>
+        <h3>Pengelolaan Arsip dan Dokumen Bisnis</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_Bab_5_Pengelolaan_Arsip_dan_Dokumen_Bisnis_XI.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 6 · HTML</p>
+        <h3>Teknologi Digital dalam Layanan Bisnis</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_Bab_6_Teknologi_Digital_dalam_Layanan_Bisnis_XI.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 7 · HTML</p>
+        <h3>Pengelolaan Rapat dan Kegiatan Bisnis</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_Bab_7_Pengelolaan_Rapat_dan_Kegiatan_Bisnis_XI.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 8 · HTML</p>
+        <h3>Evaluasi Kualitas Layanan Bisnis</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_Bab_8_Evaluasi_Kualitas_Layanan_Bisnis_XI.html">Buka presentasi</a></div>
+        
+      </article>
+    </div>
+  </section>
+  <section class="collection" data-kind="presentasi" data-keywords="mlb smk 12">
+    <h2>Manajemen Layanan Bisnis Kelas XII</h2>
+    <div class="material-grid">
+      
+      <article class="material">
+        <p class="meta">Kelas XII · Bab 1 · HTML dan PPTX</p>
+        <h3>Manajemen Pelayanan Prima</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Manajemen_Pelayanan_Prima_Kelas_XII_HP_Responsif.html">Buka presentasi</a><a class="action" href="presentasi/Manajemen_Pelayanan_Prima_Kelas_XII.pptx" download>Unduh PowerPoint</a></div>
+        <details class="variants"><summary>Versi dan format lain</summary><div class="actions"><a class="action" href="presentasi/Manajemen_Pelayanan_Prima_Kelas_XII_Layar_Penuh.html">Versi layar penuh</a><a class="action" href="presentasi/Manajemen_Pelayanan_Prima_Kelas_XII_Interaktif.html">Versi interaktif awal</a></div></details>
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XII · Bab 2 · HTML</p>
+        <h3>Pengelolaan Administrasi Bisnis</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Manajemen_Layanan_Bisnis_Bab_2_Interaktif_HP.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XII · Bab 3 · HTML</p>
+        <h3>Komunikasi Bisnis Profesional</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Manajemen_Layanan_Bisnis_Bab_3_Interaktif_HP.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XII · Bab 4 · HTML</p>
+        <h3>Pengelolaan Operasional Layanan Bisnis</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Manajemen_Layanan_Bisnis_Bab_4_Interaktif_HP.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XII · Bab 6 · HTML</p>
+        <h3>Teknologi Digital dalam Layanan Bisnis</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Manajemen_Layanan_Bisnis_Bab_6_Interaktif_HP.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XII · Bab 7 · HTML</p>
+        <h3>Pengelolaan Keuangan Administrasi</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Manajemen_Layanan_Bisnis_Bab_7_Interaktif_HP.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XII · Bab 8 · HTML</p>
+        <h3>Evaluasi dan Peningkatan Kualitas Layanan Bisnis</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Manajemen_Layanan_Bisnis_Bab_8_Interaktif_HP.html">Buka presentasi</a></div>
+        
+      </article>
+    </div>
+  </section>
+  <section class="collection" data-kind="presentasi" data-keywords="ski pai smp mts 7 8">
+    <h2>Sejarah Kebudayaan Islam</h2>
+    <div class="material-grid">
+      
+      <article class="material">
+        <p class="meta">Kelas VII · HTML</p>
+        <h3>Dakwah Nabi Muhammad saw. di Madinah</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_SKI_Kelas7_Dakwah_Madinah.html">Buka presentasi</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas VIII · HTML</p>
+        <h3>Peran Ilmuwan Masa Daulah Abbasiyah</h3>
+        
+        <div class="actions"><a class="action primary" href="presentasi/Presentasi_Interaktif_SKI_Kelas8_Peranan_Ilmuwan_Abbasiyah.html">Buka presentasi</a></div>
+        
+      </article>
+    </div>
+  </section>
+  <section class="collection" data-kind="presentasi" data-keywords="smk 10">
+    <h2>Informatika</h2>
+    <div class="material-grid">
+      
+      <article class="material">
+        <p class="meta">Kelas X · PPTX</p>
+        <h3>Cyber Guardian: Misi Penjaga Dunia Digital</h3>
+        <p class="detail">14 slide tentang keamanan internet dan proteksi data.</p>
+        <div class="actions"><a class="action primary" href="presentasi/PPT_Cyber_Guardian_X_SMK.pptx" download>Unduh PowerPoint</a></div>
+        
+      </article>
+    </div>
+  </section>
+  <section class="collection" data-kind="buku" data-keywords="produk kreatif dan kewirausahaan smk 11">
+    <h2>Buku Ajar PKK Kelas XI</h2>
+    <div class="material-grid">
+      
+      <article class="material">
+        <p class="meta">Kelas XI · Edisi lengkap · 202 halaman</p>
+        <h3>Buku Ajar PKK XI Bergambar</h3>
+        
+        <div class="actions"><a class="action primary" href="buku/PKK_XI_Lengkap_Bergambar.pdf">Baca PDF</a><a class="action" href="buku/PKK_XI_Lengkap_Bergambar.docx" download>Unduh Word</a></div>
+        <details class="variants"><summary>Versi dan format lain</summary><div class="actions"><a class="action" href="buku/PKK_XI_Semester_Ganjil_Bergambar.pdf">Semester ganjil</a><a class="action" href="buku/PKK_XI_Semester_Genap_Bergambar.pdf">Semester genap</a></div></details>
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Edisi lengkap · 333 halaman</p>
+        <h3>Buku Ajar PKK XI 2026/2027</h3>
+        
+        <div class="actions"><a class="action primary" href="buku/Buku_Ajar_PKK_Kelas_XI_SMK_IT_Nurul_Ilmi_2026-2027.pdf">Baca PDF</a><a class="action" href="buku/Buku_Ajar_PKK_Kelas_XI_SMK_IT_Nurul_Ilmi_2026-2027.docx" download>Unduh Word</a><a class="action" href="buku/Buku_PKK_Kelas_11_Lengkap.zip" download>Unduh ZIP</a></div>
+        
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Edisi lengkap · 333 halaman</p>
+        <h3>Buku Ajar PKK XI Versi Ringan</h3>
+        
+        <div class="actions"><a class="action primary" href="buku/Buku_PKK_XI_Ringan.pdf">Baca PDF</a><a class="action" href="buku/Buku_PKK_XI_Ringan.docx" download>Unduh Word</a><a class="action" href="buku/Buku_PKK_XI_Lengkap.zip" download>Unduh ZIP</a></div>
+        <details class="variants"><summary>Versi dan format lain</summary><div class="actions"><a class="action" href="buku/Buku_PKK_XI_Semester_1.pdf">Semester ganjil</a><a class="action" href="buku/Buku_PKK_XI_Semester_2.pdf">Semester genap</a></div></details>
+      </article>
+      <article class="material">
+        <p class="meta">Kelas XI · Bab 1 revisi · 15 halaman</p>
+        <h3>Dasar-Dasar Kewirausahaan dan Karakter Wirausaha</h3>
+        
+        <div class="actions"><a class="action primary" href="buku/Bab_1_PKK_XI_REVISI_BERGAMBAR.pdf">Baca PDF</a><a class="action" href="buku/Bab_1_PKK_XI_REVISI_BERGAMBAR.docx" download>Unduh Word</a></div>
+        
+      </article>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">Nurul Ilmi ABAB</div></footer>
+<script>
+(() => {
+  const controls = document.querySelector('#controls');
+  const search = document.querySelector('#search');
+  const buttons = [...controls.querySelectorAll('button[data-filter]')];
+  const sections = [...document.querySelectorAll('.collection')].map(section => ({
+    element: section,
+    entries: [...section.querySelectorAll('.material')].map(element => ({
+      element,
+      text: (section.dataset.keywords + ' ' + element.textContent).toLowerCase().replace(/\s+/g, ' ')
+    }))
+  }));
+  let selected = 'semua';
+
+  function update() {
+    const words = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    let total = 0;
+    for (const section of sections) {
+      const matchesKind = selected === 'semua' || section.element.dataset.kind === selected;
+      let visible = 0;
+      for (const item of section.entries) {
+        const show = matchesKind && words.every(word => item.text.includes(word));
+        item.element.hidden = !show;
+        if (show) visible++;
+      }
+      section.element.hidden = visible === 0;
+      total += visible;
+    }
+    document.querySelector('#result-count').textContent = total + ' materi tersedia.';
+    document.querySelector('#empty').hidden = total > 0;
+  }
+
+  search.addEventListener('input', update);
+  for (const button of buttons) {
+    button.addEventListener('click', () => {
+      selected = button.dataset.filter;
+      for (const choice of buttons) choice.setAttribute('aria-pressed', String(choice === button));
+      update();
+    });
+  }
+  controls.hidden = false;
+})();
+</script>
+</body>
+</html>
